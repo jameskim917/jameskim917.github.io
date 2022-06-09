@@ -2,8 +2,8 @@ import React from 'react'
 import { keyframes, useTheme } from '@emotion/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import styled from "@emotion/styled";
-import motion from 'framer-motion'
+import styled from "styled-components";
+import {motion} from 'framer-motion'
 
 const Container = styled.div`
     height: 40px;
@@ -11,7 +11,7 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: Manrope; sans-serif;
+    font-family: Manrope, sans-serif;
 `
 
 const Logo = styled.div`
@@ -26,7 +26,8 @@ const Logo = styled.div`
     padding: 8px;
     color: ${props => props.theme.bg};
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 400;
+    font-family: Pacifico, sans-serif;
 `
 
 const Links  = styled.div`
@@ -72,29 +73,29 @@ const MobileBurger = styled.div`
     }
 `
 
-const rotateTop = keyframes`
-    0% {
-        transform: translateY(6px);
-    }
-    50% {
-        transform: translateY(0)
-    }
-    100% {
-        transform: translateY(0) rotate(45deg)
-    }
-`
+// const rotateTop = keyframes`
+//     0% {
+//         transform: translateY(6px);
+//     }
+//     50% {
+//         transform: translateY(0)
+//     }
+//     100% {
+//         transform: translateY(0) rotate(45deg)
+//     }
+// `
 
 const SpanTop = styled.div`
     height: 2px;
     width: 100%;
     background-color: ${props => props.theme.primary};
+    transform: translateY(-4px);
 `
 
 const SpanMiddle = styled.div`
     height: 2px;
     width: 60%;
     background-color: ${props => props.theme.primary};
-    visibility: ${props => props.open ? 'hidden' : 'visible'};
     opacity: ${props => props.open ? 0 : 1};
     transition: all 0.3s;
 `
@@ -103,8 +104,7 @@ const SpanBottom = styled.div`
     height: 2px;
     width: 100%;
     background-color: ${props => props.theme.primary};
-    transform: ${props => props.open ? 'translateY(0)' : 'translateY(-6px)'};
-    transition: all 0.3s;
+    transform: translateY(4px);
 `
 
 const MobileMenu = styled.div`
@@ -126,21 +126,30 @@ const MobileMenu = styled.div`
     transition: all 0.3s;
 `
 
-const variants = {
-    open: {
-        opacity: [0, 0.5, 1],
+const variantsTop = {
+    openTop: {
         rotate: [0, 0, 45],
-        y: [6, 0, 0]
+        y: [0, 2, 2]
     },
-    closed: {
-        opacity: [1, 0,5, 0],
+    closedTop: {
         rotate: [45, 0, 0],
-        y: [0, 0, 6]
+        y: [2, 2, -4]
+    }
+}
+
+const variantsBottom = {
+    openBottom: {
+        rotate: [0, 0, -45],
+        y: [0, -2, -2]
+    },
+    closedBottom: {
+        rotate: [-45, 0, 0],
+        y: [-2, -2, 4]
     }
 }
 
 function Navbar() {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState()
 
   return (
     <Container>
@@ -161,11 +170,14 @@ function Navbar() {
         {/* Mobile menu burger */}
         <MobileBurger onClick={() => setOpen(!open)}>
             <SpanTop as={motion.div} open={open} key='spanTop'
-                animate={open ? 'open' : 'closed'}
-                variants={variants}
+                animate={open ? 'openTop' : open === false ? 'closedTop' : undefined}
+                variants={variantsTop}
             />
             <SpanMiddle open={open}/>
-            <SpanBottom open={open} key='spanBottom'/>
+            <SpanBottom as={motion.div} open={open} key='spanBottom'
+                animate={open ? 'openBottom' : open === false ? 'closedBottom' : undefined}
+                variants={variantsBottom}
+            />
         </MobileBurger>
         <MobileMenu open={open}>
             <Link href={'/'}>
