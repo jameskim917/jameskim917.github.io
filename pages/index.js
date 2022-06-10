@@ -18,7 +18,7 @@ const Hero = styled.div`
   display: flex;
   gap: 50px;
   margin-top: 75px;
-  @media (max-width: 480px) {
+  @media (max-width: 840px) {
     flex-direction: column;
     align-items: center;
     gap: 24px;
@@ -43,7 +43,7 @@ const HeroInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  @media (max-width: 480px) {
+  @media (max-width: 610px) {
     align-items: center;
     text-align: center;
   }
@@ -83,7 +83,7 @@ const HeroIcons = styled.div`
   width: fit-content;
   display: flex;
   gap: 16px;
-  @media (max-width: 480px) {
+  @media (max-width: 610px) {
     flex-direction: column;
     width: 100%;
   }
@@ -94,7 +94,7 @@ const HeroIconsLeft = styled.div`
   width: fit-content;
   display: flex;
   gap: 16px;
-  @media (max-width: 480px) {
+  @media (max-width: 610px) {
     width: 100%;
     justify-content: center;
   }
@@ -105,7 +105,7 @@ const HeroIconsRight = styled.div`
   width: fit-content;
   display: flex;
   gap: 16px;
-  @media (max-width: 480px) {
+  @media (max-width: 610px) {
     width: 100%;
     justify-content: center;
   }
@@ -122,8 +122,8 @@ const HeroIcon = styled.div`
 
 const Portfolio = styled.div`
   height: fit-content;
-  width: fit-content;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1004px;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -133,6 +133,7 @@ const Portfolio = styled.div`
 const Header = styled.h3`
   font-size: 28px;
   font-weight: 600;
+  color: ${(props) => props.theme.primary};
 `;
 
 const Overlay = styled.div`
@@ -142,7 +143,8 @@ const Overlay = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
   visibility: ${(props) =>
     props.selected === undefined ? "hidden" : "visible"};
   pointer-events: ${(props) =>
@@ -150,8 +152,9 @@ const Overlay = styled.div`
 `;
 
 const ProjectsContainer = styled.div`
-  height: 724px;
-  width: 1200px;
+  height: fit-content;
+  width: 100%;
+  max-width: 1004px;
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
@@ -174,6 +177,53 @@ const Project = styled.div`
   z-index: 1;
   padding: 0;
   margin-left: 0;
+  @media (max-width: 518px) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 486 / 346;
+  }
+  &:hover {
+    box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
+  }
+  transition: box-shadow 0.3s;
+`;
+
+const ProjectActionButton = styled.div`
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  &:hover {
+    background-color: #dedede;
+  }
+  transition: background-color 0.3s;
+  cursor: pointer;
+`;
+
+const ProjectActionLineTop = styled.div`
+  height: 2px;
+  width 10px;
+  background-color: #000;
+  transform: rotate(45deg);
+  position: relative;
+  top: -2px;
+`;
+
+const ProjectActionLineBottom = styled.div`
+  height: 2px;
+  width 10px;
+  background-color: #000;
+  transform: rotate(-45deg);
+  position: relative;
+  top: 2px;
 `;
 
 const ProjectPlaceholder = styled.div`
@@ -187,6 +237,10 @@ const ProjectImage = styled.div`
   height: 346px;
   width: 486px;
   border-radius: 25px;
+  @media (max-width: 518px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const ImageGradient = styled.div`
@@ -195,12 +249,16 @@ const ImageGradient = styled.div`
   height: 346px;
   width: 486px;
   border-radius: 25px;
+  @media (max-width: 518px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const ProjectInfo = styled.div`
   z-index: 1;
   position: absolute;
-  top: 240px;
+  bottom: 16px;
   left: 16px;
   height: fit-content;
   width: auto;
@@ -208,8 +266,7 @@ const ProjectInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 16px;
-  padding-bottom: 24px;
+  gap: 0;
 `;
 
 const ProjectText = styled.div`
@@ -227,6 +284,7 @@ const ProjectTitle = styled.h3`
 
 const ProjectLabels = styled.div`
   display: flex;
+  max-width: 80%;
   flex-wrap: wrap;
   gap: 8px;
   line-height: 1;
@@ -242,6 +300,7 @@ const ProjectDescription = styled.p`
   color: ${(props) => props.theme.secondary};
   visibility: hidden;
   opacity: 0;
+  height: 0;
 `;
 
 const ProjectButtons = styled.div`
@@ -251,6 +310,7 @@ const ProjectButtons = styled.div`
   gap: 16px;
   visibility: hidden;
   opacity: 0;
+  height: 0;
 `;
 
 const DemoButton = styled.button`
@@ -269,6 +329,42 @@ const GithubButton = styled.button`
   color: ${(props) => props.theme.bg};
   font-size: 15px;
   font-weight: 500;
+`;
+
+const Contact = styled.div`
+  height: fit-content;
+  width: 100%;
+  max-width: 1004px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: 75px;
+`;
+
+const ContactContainer = styled.div`
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
+const ContactLabel = styled.h5`
+  font-size: 18px;
+  font-weight: 400;
+  color: ${(props) => props.theme.primary};
+`;
+
+const ContactButton = styled.button`
+  padding: 8px 16px;
+  border-radius: 10px;
+  background-color: ${(props) => props.theme.blue};
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: Manrope, sans-serif;
 `;
 
 export default function Home() {
@@ -298,8 +394,8 @@ export default function Home() {
               <Name>James Kim</Name>
               <Title>Web Developer</Title>
               <Description>
-                I’m a self-taught web developer building digital experiences
-                with full-stack technologies.
+                I’m a self-taught developer building digital experiences with
+                full-stack technologies.
               </Description>
             </HeroText>
             <HeroIcons>
@@ -347,9 +443,28 @@ export default function Home() {
                 originX: 0,
                 originY: 0,
                 marginTop: selected === 0 ? -189 : 0,
+                cursor: selected === 0 ? "default" : "pointer",
               }}
-              onClick={() => setSelected(0)}
+              onClick={() => selected === undefined && setSelected(0)}
             >
+              <ProjectActionButton
+                as={motion.div}
+                layout
+                selected={selected}
+                className={selected === 0 && "selected-project-action-button"}
+                onClick={() => selected === 0 && setSelected(undefined)}
+              >
+                <ProjectActionLineTop
+                  className={
+                    selected === 0 && "selected-project-action-line-top"
+                  }
+                />
+                <ProjectActionLineBottom
+                  className={
+                    selected === 0 && "selected-project-action-line-bottom"
+                  }
+                />
+              </ProjectActionButton>
               <ProjectInfo
                 selected={selected}
                 className={selected === 0 ? "selected-project-info" : ""}
@@ -422,9 +537,28 @@ export default function Home() {
                 originX: 0,
                 originY: 0,
                 marginTop: selected === 1 ? -189 : 0,
+                cursor: selected === 1 ? "default" : "pointer",
               }}
-              onClick={() => setSelected(1)}
+              onClick={() => selected === undefined && setSelected(1)}
             >
+              <ProjectActionButton
+                as={motion.div}
+                layout
+                selected={selected}
+                className={selected === 1 && "selected-project-action-button"}
+                onClick={() => selected === 1 && setSelected(undefined)}
+              >
+                <ProjectActionLineTop
+                  className={
+                    selected === 1 && "selected-project-action-line-top"
+                  }
+                />
+                <ProjectActionLineBottom
+                  className={
+                    selected === 1 && "selected-project-action-line-bottom"
+                  }
+                />
+              </ProjectActionButton>
               <ProjectImage as={motion.div} layout>
                 <Image
                   src="/Project2.png"
@@ -483,25 +617,64 @@ export default function Home() {
             </Project>
             {selected === 1 && <ProjectPlaceholder />}
 
-            <Project>
-              <ProjectImage>
-                <Image
-                  src="/Project3.png"
-                  layout="fill"
-                  style={{ borderRadius: 25 }}
+            <Project
+              className={selected === 2 && "selected-project"}
+              as={motion.div}
+              layout
+              selected={selected}
+              style={{
+                originX: 0,
+                originY: 0,
+                marginTop: selected === 2 ? -189 : 0,
+                cursor: selected === 2 ? "default" : "pointer",
+              }}
+              onClick={() => selected === undefined && setSelected(2)}
+            >
+              <ProjectActionButton
+                as={motion.div}
+                layout
+                selected={selected}
+                className={selected === 2 && "selected-project-action-button"}
+                onClick={() => selected === 2 && setSelected(undefined)}
+              >
+                <ProjectActionLineTop
+                  className={
+                    selected === 2 && "selected-project-action-line-top"
+                  }
                 />
-              </ProjectImage>
-              <ProjectInfo>
-                <ProjectText>
-                  <ProjectTitle>Community Marketplace</ProjectTitle>
-                  <ProjectLabels>
+                <ProjectActionLineBottom
+                  className={
+                    selected === 2 && "selected-project-action-line-bottom"
+                  }
+                />
+              </ProjectActionButton>
+              <ProjectInfo
+                selected={selected}
+                className={selected === 2 ? "selected-project-info" : ""}
+              >
+                <ProjectText as={motion.div} layout>
+                  <ProjectTitle
+                    selected={selected}
+                    style={{ color: selected === 2 ? theme.primary : "#fff" }}
+                  >
+                    Community Marketplace
+                  </ProjectTitle>
+                  <ProjectLabels
+                    selected={selected}
+                    style={{ color: selected === 2 ? theme.textBlue : "#fff" }}
+                  >
                     <ProjectLabel>React</ProjectLabel>
+                    <ProjectLabel>Redux</ProjectLabel>
+                    <ProjectLabel>Python</ProjectLabel>
                     <ProjectLabel>Django</ProjectLabel>
                     <ProjectLabel>SQLite</ProjectLabel>
                     <ProjectLabel>Auth0</ProjectLabel>
                     <ProjectLabel>REST API</ProjectLabel>
                   </ProjectLabels>
-                  <ProjectDescription>
+                  <ProjectDescription
+                    selected={selected}
+                    className={selected === 2 && "selected-project-visible"}
+                  >
                     Web application for users to buy and sell goods. Users can
                     register for accounts to create, edit, delete and view
                     items. Other features including liking and saving items to
@@ -510,14 +683,46 @@ export default function Home() {
                     breakpoints.
                   </ProjectDescription>
                 </ProjectText>
-                <ProjectButtons>
+                <ProjectButtons
+                  selected={selected}
+                  className={selected === 2 && "selected-project-visible"}
+                >
                   <DemoButton>Live Demo</DemoButton>
                   <GithubButton>Github Repo</GithubButton>
                 </ProjectButtons>
               </ProjectInfo>
+              <ProjectImage as={motion.div} layout>
+                <Image
+                  src="/Project3.png"
+                  layout="fill"
+                  style={{ borderRadius: 25 }}
+                />
+                <ImageGradient
+                  as={motion.div}
+                  color="rgba(204, 229, 212, 0.25)"
+                  animate={
+                    selected === 2
+                      ? { opacity: 0, visibility: "hidden" }
+                      : { opacity: 1, visibility: "visible" }
+                  }
+                />
+              </ProjectImage>
             </Project>
+            {selected === 2 && <ProjectPlaceholder />}
           </ProjectsContainer>
         </Portfolio>
+
+        <Contact>
+          <Header>Contact</Header>
+          <ContactContainer>
+            <ContactLabel>
+              If you have any inquiries, please send me an email.
+              <br />
+              My inbox is always open.
+            </ContactLabel>
+            <ContactButton>Get in Touch</ContactButton>
+          </ContactContainer>
+        </Contact>
       </main>
 
       {/* <footer className={styles.footer}></footer> */}
