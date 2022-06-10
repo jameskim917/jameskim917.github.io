@@ -4,6 +4,7 @@ import Image from "next/image";
 import Navbar from "../components/Navbar";
 import styled, { useTheme } from "styled-components";
 import { motion } from "framer-motion";
+import disableScroll from "disable-scroll";
 
 const Container = styled.div`
   padding: 16px;
@@ -21,7 +22,7 @@ const Hero = styled.div`
   @media (max-width: 840px) {
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
     margin-top: 24px;
   }
 `;
@@ -35,6 +36,7 @@ const HeroProfile = styled.div`
     height: 100px;
     width: 100px;
   }
+  border: 2px solid ${(props) => props.theme.primary};
 `;
 
 const HeroInfo = styled.div`
@@ -117,7 +119,6 @@ const HeroIcon = styled.div`
   display: grid;
   place-items: center;
   border-radius: 10px;
-  box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.2);
 `;
 
 const Portfolio = styled.div`
@@ -230,6 +231,11 @@ const ProjectPlaceholder = styled.div`
   height: 346px;
   width: 486px;
   background-color: ${(props) => props.theme.bg};
+  @media (max-width: 518px) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 486 / 346;
+  }
 `;
 
 const ProjectImage = styled.div`
@@ -239,7 +245,8 @@ const ProjectImage = styled.div`
   border-radius: 25px;
   @media (max-width: 518px) {
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 486 / 346;
   }
 `;
 
@@ -370,6 +377,8 @@ const ContactButton = styled.button`
 export default function Home() {
   const [selected, setSelected] = React.useState();
   const theme = useTheme();
+  const projectRef = React.useRef(null);
+
   return (
     <Container>
       <Head>
@@ -392,7 +401,7 @@ export default function Home() {
           <HeroInfo>
             <HeroText>
               <Name>James Kim</Name>
-              <Title>Web Developer</Title>
+              <Title>Software Developer</Title>
               <Description>
                 I’m a self-taught developer building digital experiences with
                 full-stack technologies.
@@ -431,28 +440,39 @@ export default function Home() {
             as={motion.div}
             animate={{ opacity: selected !== undefined ? 1 : 0 }}
             selected={selected}
-            onClick={() => setSelected(undefined)}
+            onClick={() =>
+              selected === 0 && setSelected(undefined) && disableScroll.off()
+            }
           />
           <ProjectsContainer>
             <Project
-              className={selected === 0 && "selected-project"}
+              ref={projectRef}
+              className={
+                selected === 0 && "selected-project selected-project-reverse"
+              }
               as={motion.div}
               layout
               selected={selected}
               style={{
                 originX: 0,
                 originY: 0,
-                marginTop: selected === 0 ? -189 : 0,
                 cursor: selected === 0 ? "default" : "pointer",
               }}
-              onClick={() => selected === undefined && setSelected(0)}
             >
               <ProjectActionButton
                 as={motion.div}
                 layout
                 selected={selected}
                 className={selected === 0 && "selected-project-action-button"}
-                onClick={() => selected === 0 && setSelected(undefined)}
+                onClick={() => {
+                  if (selected === 0) {
+                    setSelected(undefined);
+                    disableScroll.off();
+                  } else if (selected === undefined) {
+                    setSelected(0);
+                    disableScroll.on();
+                  }
+                }}
               >
                 <ProjectActionLineTop
                   className={
@@ -468,6 +488,12 @@ export default function Home() {
               <ProjectInfo
                 selected={selected}
                 className={selected === 0 ? "selected-project-info" : ""}
+                onClick={() => {
+                  if (selected === undefined) {
+                    setSelected(0);
+                    disableScroll.on();
+                  }
+                }}
               >
                 <ProjectText as={motion.div} layout>
                   <ProjectTitle
@@ -478,7 +504,9 @@ export default function Home() {
                   </ProjectTitle>
                   <ProjectLabels
                     selected={selected}
-                    style={{ color: selected === 0 ? theme.textBlue : "#fff" }}
+                    style={{
+                      color: selected === 0 ? theme.textBlue : "#fff",
+                    }}
                   >
                     <ProjectLabel>React</ProjectLabel>
                     <ProjectLabel>Typescript</ProjectLabel>
@@ -509,7 +537,16 @@ export default function Home() {
                   <GithubButton>Github Repo</GithubButton>
                 </ProjectButtons>
               </ProjectInfo>
-              <ProjectImage as={motion.div} layout>
+              <ProjectImage
+                as={motion.div}
+                layout
+                onClick={() => {
+                  if (selected === undefined) {
+                    setSelected(0);
+                    disableScroll.on();
+                  }
+                }}
+              >
                 <Image
                   src="/Project1.png"
                   layout="fill"

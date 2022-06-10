@@ -31,16 +31,39 @@ main {
 }
 
 .selected-project {
-  height: fit-content !important;
-  width: 1007px !important;
+  position: fixed !important;
+  z-index: 2 !important;
+  height: 100% !important;
+  width: 100% !important;
+  flex-direction: column !important;
   justify-content: flex-start !important;
   align-items: center !important;
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  z-index: 2 !important;
-  padding: 16px !important;
-  margin-left: -503.5px !important;
+  padding: 77px 16px 16px 16px !important;
+  border-radius: 0 !important;
+}
+
+.selected-project-reverse {
+  flex-direction: column-reverse !important;
+  justify-content: flex-end !important;
+}
+
+@media only screen and (min-width: 1004px) {
+  .selected-project {
+    height: fit-content !important;
+    width: 1007px !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    z-index: 2 !important;
+    padding: 16px !important;
+    margin-left: -503.5px !important;
+  }
+
+  .selected-project-reverse {
+    flex-direction: row !important;
+  }
 }
 
 .selected-project-action-button {

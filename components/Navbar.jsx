@@ -21,13 +21,17 @@ const Logo = styled.div`
     align-items: center;
     height: 40px;
     width: 40px;
-    background-color: ${props => props.theme.primary};
-    border-radius: 10px;
+    background-color: ${props => props.theme.bg};
+    border: 2px solid ${props => props.theme.primary};
+    border-radius: 15px;
     padding: 8px;
-    color: ${props => props.theme.bg};
+`
+
+const LogoJ = styled.h6`
     font-size: 24px;
     font-weight: 400;
     font-family: Pacifico, sans-serif;
+    color: ${props => props.theme.primary};
 `
 
 const Links  = styled.div`
@@ -36,14 +40,25 @@ const Links  = styled.div`
     display: flex;
     align-items: center;
     gap: 16px;
-    & a: {
-        fontSize: 17px;
-        fontWeight: 500;
-        color: ${props => props.theme.secondary};
-    };
     @media (max-width: 480px) {
         display: none;
     }
+`
+
+const LinkContainer = styled.div`
+    fontSize: 17px;
+    fontWeight: 500;
+    color: ${props => props.theme.primary};
+    padding: 8px 0;
+`
+
+const ResumeContainer = styled.div`
+    fontSize: 17px;
+    fontWeight: 500;
+    color: ${props => props.theme.blue};
+    padding: 8px 16px;
+    border: 2px solid ${props => props.theme.blue};
+    border-radius: 10px;
 `
 
 const Button = styled.button`
@@ -57,6 +72,9 @@ const Button = styled.button`
     font-size: 17px;
     font-weight: 500;
     font-family: Manrope, sans-serif;
+    @media (max-width: 480px) {
+        font-size: 20px;
+    }
 `
 const MobileBurger = styled.div`
     @media (min-width: 481px) {
@@ -111,19 +129,31 @@ const MobileMenu = styled.div`
     display: flex;
     visibility: ${props => props.open ? 'visible' : 'hidden'};
     opacity: ${props => props.open ? 1 : 0};
-    position: fixed;
+    position: absolute;
     top: 72px;
     height: fit-content;
     width: calc(100% - 32px);
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
     padding: 16px;
     align-items: center;
     background-color: ${props => props.theme.bg};
     border-radius: 10px;
-    box-shadow: 0 2px 15px 2px rgba(0,0,0, 0.2);
-    font-size: 17px;
+    border: 2px solid ${props => props.theme.primary};
+    box-shadow: 0 5px 15px 2px rgba(0,0,0, 0.2);
+    font-size: 20px;
     transition: all 0.3s;
+    z-index: 5;
+`
+
+const MobileMenuBackdrop = styled.div`
+    background: transparent;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
 `
 
 const variantsTop = {
@@ -154,7 +184,7 @@ function Navbar() {
   return (
     <Container>
         <Logo>
-            J
+            <LogoJ>J</LogoJ>
         </Logo>
         <Links>
             <Link href={'/'}>
@@ -180,16 +210,21 @@ function Navbar() {
             />
         </MobileBurger>
         <MobileMenu open={open}>
-            <Link href={'/'}>
-                <a>Portfolio</a>
-            </Link>
-            <Link href={'/'}>
-                <a>Contact</a>
-            </Link >
-            <Button>
+            <LinkContainer>
+                <Link href={'/'}>
+                    <a>Portfolio</a>
+                </Link>
+            </LinkContainer>
+            <LinkContainer>
+                <Link href={'/'}>
+                    <a>Contact</a>
+                </Link >
+            </LinkContainer>
+            <ResumeContainer>
                 Resume
-            </Button>
+            </ResumeContainer>
         </MobileMenu>
+        {open && <MobileMenuBackdrop onClick={() => open && setOpen(false)} />}
     </Container>
   )
 }
