@@ -6,11 +6,16 @@ import styled from "styled-components";
 import {motion} from 'framer-motion'
 
 const Container = styled.div`
+    position: absolute;
+    top: 0;
+    z-index: 1;
     height: 40px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 16px 0;
+    padding: 0 16px;
     font-family: Manrope, sans-serif;
 `
 
@@ -21,9 +26,6 @@ const Logo = styled.div`
     align-items: center;
     height: 40px;
     width: 40px;
-    background-color: ${props => props.theme.bg};
-    border: 2px solid ${props => props.theme.primary};
-    border-radius: 15px;
     padding: 8px;
 `
 
@@ -31,7 +33,7 @@ const LogoJ = styled.h6`
     font-size: 24px;
     font-weight: 400;
     font-family: Pacifico, sans-serif;
-    color: ${props => props.theme.primary};
+    color: #fff;
 `
 
 const Links  = styled.div`
@@ -43,37 +45,53 @@ const Links  = styled.div`
     @media (max-width: 480px) {
         display: none;
     }
+    color: #fff;
+    font-size: 16px;
+    & a:hover {
+        color: #00366C;
+    }
+    transition: all 0.3s;
 `
 
 const LinkContainer = styled.div`
-    fontSize: 17px;
-    fontWeight: 500;
-    color: ${props => props.theme.primary};
+    font-size: 17px;
+    font-weight: 500;
+    color: #00366C;
     padding: 8px 0;
 `
 
 const ResumeContainer = styled.div`
-    fontSize: 17px;
-    fontWeight: 500;
-    color: ${props => props.theme.blue};
+    font-size: 17px;
+    font-weight: 500;
+    color: #fff;
     padding: 8px 16px;
-    border: 2px solid ${props => props.theme.blue};
+    background-color: #00366C;
     border-radius: 10px;
 `
 
 const Button = styled.button`
     height: fit-content;
     width: fit-content;
-    color: ${props => props.theme.bg};
-    background-color: ${props => props.theme.blue};
-    border-width: 0;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 2px solid #fff;
     border-radius: 10px;
-    padding: 8px 16px;
-    font-size: 17px;
+    box-shadow: 0 2px 15px 2px rgba(255, 255, 255, 0.2);
+    padding: 4px 8px;
+    font-size: 16px;
     font-weight: 500;
     font-family: Manrope, sans-serif;
     @media (max-width: 480px) {
         font-size: 20px;
+    }
+    &:hover {
+        background-color: rgba(255, 255, 255, 1);
+        color: #00366C;
+    }
+    transition: all 0.3s;
+    cursor: pointer;
+    &:active {
+        background-color: #f0f0f0;
     }
 `
 const MobileBurger = styled.div`
@@ -91,29 +109,17 @@ const MobileBurger = styled.div`
     }
 `
 
-// const rotateTop = keyframes`
-//     0% {
-//         transform: translateY(6px);
-//     }
-//     50% {
-//         transform: translateY(0)
-//     }
-//     100% {
-//         transform: translateY(0) rotate(45deg)
-//     }
-// `
-
 const SpanTop = styled.div`
     height: 2px;
     width: 100%;
-    background-color: ${props => props.theme.primary};
+    background-color: ${props => props.theme.bg};
     transform: translateY(-4px);
 `
 
 const SpanMiddle = styled.div`
     height: 2px;
     width: 60%;
-    background-color: ${props => props.theme.primary};
+    background-color: ${props => props.theme.bg};
     opacity: ${props => props.open ? 0 : 1};
     transition: all 0.3s;
 `
@@ -121,7 +127,7 @@ const SpanMiddle = styled.div`
 const SpanBottom = styled.div`
     height: 2px;
     width: 100%;
-    background-color: ${props => props.theme.primary};
+    background-color: ${props => props.theme.bg};
     transform: translateY(4px);
 `
 
@@ -130,17 +136,18 @@ const MobileMenu = styled.div`
     visibility: ${props => props.open ? 'visible' : 'hidden'};
     opacity: ${props => props.open ? 1 : 0};
     position: absolute;
-    top: 72px;
+    top: 40px;
     height: fit-content;
     width: calc(100% - 32px);
     flex-direction: column;
     gap: 16px;
     padding: 16px;
     align-items: center;
-    background-color: ${props => props.theme.bg};
-    border-radius: 10px;
-    border: 2px solid ${props => props.theme.primary};
-    box-shadow: 0 5px 15px 2px rgba(0,0,0, 0.2);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    border-radius: 25px;
+    border: 1px solid #dddddd;
+    box-shadow: 0 5px 15px 2px rgba(255, 255, 255, 0.2);
     font-size: 20px;
     transition: all 0.3s;
     z-index: 5;
@@ -184,7 +191,7 @@ function Navbar() {
   return (
     <Container>
         <Logo>
-            <LogoJ>J</LogoJ>
+            <LogoJ>J.</LogoJ>
         </Logo>
         <Links>
             <Link href={'/'}>

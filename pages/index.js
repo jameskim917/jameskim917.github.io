@@ -7,7 +7,17 @@ import { motion } from "framer-motion";
 import disableScroll from "disable-scroll";
 
 const Container = styled.div`
-  padding: 16px;
+  padding: 0 16px 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const HeroContainer = styled.div`
+  position: relative;
+  height: fit-content;
+  width: 100vw;
+  background: linear-gradient(#7bc6cc, #be93c5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,25 +28,40 @@ const Hero = styled.div`
   width: fit-content;
   display: flex;
   gap: 50px;
-  margin-top: 75px;
+  margin-top: 125px;
   @media (max-width: 840px) {
     flex-direction: column;
     align-items: center;
-    gap: 16px;
-    margin-top: 24px;
+    gap: 0;
+    margin-top: 56px;
   }
 `;
 
 const HeroProfile = styled.div`
   position: relative;
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   border-radius: 999px;
   @media (max-width: 480px) {
     height: 100px;
     width: 100px;
   }
-  border: 2px solid ${(props) => props.theme.primary};
+  border: 2px solid #fff;
+  background-color: rgba(255, 255, 255, 0.3);
+  &:before {
+    content: "";
+    background: linear-gradient(
+      rgba(255, 255, 255, 1),
+      rgba(0, 163, 255, 0.35)
+    );
+    position: absolute;
+    top: 25px;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    border-radius: 999px;
+    filter: blur(25px);
+  }
 `;
 
 const HeroInfo = styled.div`
@@ -60,23 +85,29 @@ const HeroText = styled.div`
 `;
 
 const Name = styled.h1`
-  font-family: Manrope, sans-serif;
+  font-family: Mulish, sans-serif;
   font-size: 48px;
   font-weight: 600;
+  background: -webkit-linear-gradient(
+    rgba(255, 255, 255, 1),
+    rgba(220, 242, 255, 1)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const Title = styled.h3`
-  font-family: Manrope, sans-serif;
-  font-size: 32px;
-  font-weight: 600;
-  color: ${(props) => props.theme.textBlue};
+  font-family: Mulish, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #00366c;
 `;
 
 const Description = styled.p`
   font-family: Manrope, sans-serif;
-  font-size: 24px;
+  font-size: 17px;
   font-weight: 300;
-  color: ${(props) => props.theme.secondary};
+  color: #fff;
   margin-top: 4px;
 `;
 
@@ -86,8 +117,8 @@ const HeroIcons = styled.div`
   display: flex;
   gap: 16px;
   @media (max-width: 610px) {
-    flex-direction: column;
     width: 100%;
+    justify-content: center;
   }
 `;
 
@@ -97,7 +128,6 @@ const HeroIconsLeft = styled.div`
   display: flex;
   gap: 16px;
   @media (max-width: 610px) {
-    width: 100%;
     justify-content: center;
   }
 `;
@@ -108,17 +138,34 @@ const HeroIconsRight = styled.div`
   display: flex;
   gap: 16px;
   @media (max-width: 610px) {
-    width: 100%;
     justify-content: center;
   }
 `;
 
 const HeroIcon = styled.div`
-  height: 85px;
-  width: 85px;
+  height: 45px;
+  width: 45px;
   display: grid;
   place-items: center;
-  border-radius: 10px;
+`;
+
+const Wave1 = styled.div`
+  position: absolute;
+  bottom: 25px;
+  height: auto;
+  width: 100%;
+  aspect-ratio: 1440 / 224;
+  z-index: 1;
+`;
+
+const Wave2 = styled.div`
+  height: auto;
+  width: 100%;
+  aspect-ratio: 1440 / 147;
+  z-index: 2;
+  bottom: -2px;
+  margin-top: 75px;
+  border-bottom: 2px solid #fff;
 `;
 
 const Portfolio = styled.div`
@@ -127,8 +174,11 @@ const Portfolio = styled.div`
   max-width: 1004px;
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  margin-top: 75px;
+  gap: 24px;
+  margin-top: 0;
+  @media (min-width: 611px) {
+    margin-top: 0;
+  }
 `;
 
 const Header = styled.h3`
@@ -144,7 +194,7 @@ const Overlay = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(242, 246, 255, 0.5);
   backdrop-filter: blur(2px);
   visibility: ${(props) =>
     props.selected === undefined ? "hidden" : "visible"};
@@ -205,7 +255,7 @@ const ProjectActionButton = styled.div`
   &:hover {
     background-color: #dedede;
   }
-  transition: background-color 0.3s;
+  transition: background-color 0.1s;
   cursor: pointer;
 `;
 
@@ -285,6 +335,7 @@ const ProjectText = styled.div`
 `;
 
 const ProjectTitle = styled.h3`
+  font-family: Mulish, sans-serif;
   font-size: 28px;
   font-weight: 600;
 `;
@@ -298,10 +349,12 @@ const ProjectLabels = styled.div`
 `;
 
 const ProjectLabel = styled.h5`
+  font-family: Mulish, sans-serif;
   font-size: 18px;
   font-weight: 400;
 `;
 const ProjectDescription = styled.p`
+  font-family: Mulish, sans-serif;
   font-size: 18px;
   font-weight: 300;
   color: ${(props) => props.theme.secondary};
@@ -322,20 +375,34 @@ const ProjectButtons = styled.div`
 
 const DemoButton = styled.button`
   padding: 8px 16px;
-  border-radius: 10px;
-  background-color: ${(props) => props.theme.blue};
+  border-radius: 25px;
+  background-color: #0099ff;
   color: #fff;
   font-size: 15px;
   font-weight: 500;
+  &:hover {
+    filter: brightness(1.1);
+  }
+  transition: filter 0.1s;
+  font-family: Mulish, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
 `;
 
 const GithubButton = styled.button`
   padding: 8px 16px;
-  border-radius: 10px;
-  background-color: ${(props) => props.theme.primary};
-  color: ${(props) => props.theme.bg};
+  border-radius: 25px;
+  background-color: #000;
+  color: #fff;
   font-size: 15px;
   font-weight: 500;
+  &:hover {
+    background-color: #6a6a6a;
+  }
+  transition: background-color 0.1s;
+  font-family: Mulish, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
 `;
 
 const Contact = styled.div`
@@ -344,7 +411,7 @@ const Contact = styled.div`
   max-width: 1004px;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 24px;
   margin-top: 75px;
 `;
 
@@ -366,7 +433,7 @@ const ContactLabel = styled.h5`
 
 const ContactButton = styled.button`
   padding: 8px 16px;
-  border-radius: 10px;
+  border-radius: 25px;
   background-color: ${(props) => props.theme.blue};
   color: #fff;
   font-size: 15px;
@@ -390,63 +457,84 @@ export default function Home() {
       <Navbar />
 
       <main>
-        <Hero>
-          <HeroProfile>
+        <HeroContainer>
+          <Hero>
+            <HeroProfile>
+              <Image
+                src="/profile.png"
+                layout="fill"
+                style={{ borderRadius: 999 }}
+              />
+            </HeroProfile>
+            <HeroInfo>
+              <HeroText>
+                <Name>James Kim</Name>
+                <Title>SOFTWARE DEVELOPER</Title>
+                <Description>
+                  I’m a self-taught developer building digital experiences
+                  <br />
+                  with full-stack technologies.
+                </Description>
+              </HeroText>
+              <HeroIcons>
+                <HeroIconsLeft>
+                  <HeroIcon>
+                    <Image src="/JSlogo.svg" height={45} width={45} />
+                  </HeroIcon>
+                  <HeroIcon>
+                    <Image src="/TSlogo.svg" height={45} width={45} />
+                  </HeroIcon>
+                  <HeroIcon>
+                    <Image src="/Reactlogo.svg" height={45} width={45} />
+                  </HeroIcon>
+                </HeroIconsLeft>
+                <HeroIconsRight>
+                  <HeroIcon>
+                    <Image src="/Nodelogo.svg" height={45} width={45} />
+                  </HeroIcon>
+                  <HeroIcon>
+                    <Image src="/Pythonlogo.svg" height={45} width={45} />
+                  </HeroIcon>
+                  <HeroIcon>
+                    <Image src="/GraphQLlogo.svg" height={45} width={45} />
+                  </HeroIcon>
+                </HeroIconsRight>
+              </HeroIcons>
+            </HeroInfo>
+          </Hero>
+          <Wave1>
             <Image
-              src="/profile.png"
-              layout="fill"
-              style={{ borderRadius: 999 }}
+              src="/Wave1.svg"
+              layout="responsive"
+              width={1440}
+              height={224}
             />
-          </HeroProfile>
-          <HeroInfo>
-            <HeroText>
-              <Name>James Kim</Name>
-              <Title>Software Developer</Title>
-              <Description>
-                I’m a self-taught developer building digital experiences with
-                full-stack technologies.
-              </Description>
-            </HeroText>
-            <HeroIcons>
-              <HeroIconsLeft>
-                <HeroIcon>
-                  <Image src="/JSlogo.png" height={60} width={60} />
-                </HeroIcon>
-                <HeroIcon>
-                  <Image src="/TSlogo.png" height={60} width={60} />
-                </HeroIcon>
-                <HeroIcon>
-                  <Image src="/Reactlogo.png" height={54} width={61} />
-                </HeroIcon>
-              </HeroIconsLeft>
-              <HeroIconsRight>
-                <HeroIcon>
-                  <Image src="/Nodelogo.png" height={24} width={60} />
-                </HeroIcon>
-                <HeroIcon>
-                  <Image src="/Pythonlogo.png" height={54} width={54} />
-                </HeroIcon>
-                <HeroIcon>
-                  <Image src="/GraphQLlogo.png" height={58} width={58} />
-                </HeroIcon>
-              </HeroIconsRight>
-            </HeroIcons>
-          </HeroInfo>
-        </Hero>
+          </Wave1>
+          <Wave2>
+            <Image
+              src="/Wave2.svg"
+              layout="responsive"
+              width={1440}
+              height={146}
+            />
+          </Wave2>
+        </HeroContainer>
 
         <Portfolio>
-          <Header>Portfolio</Header>
+          <Header>Portfolio.</Header>
           <Overlay
             as={motion.div}
             animate={{ opacity: selected !== undefined ? 1 : 0 }}
             selected={selected}
-            onClick={() =>
-              selected === 0 && setSelected(undefined) && disableScroll.off()
-            }
+            onClick={() => {
+              if (selected !== undefined) {
+                setSelected(undefined);
+                disableScroll.off();
+              }
+            }}
           />
           <ProjectsContainer>
             <Project
-              ref={projectRef}
               className={
                 selected === 0 && "selected-project selected-project-reverse"
               }
@@ -573,17 +661,23 @@ export default function Home() {
               style={{
                 originX: 0,
                 originY: 0,
-                marginTop: selected === 1 ? -189 : 0,
                 cursor: selected === 1 ? "default" : "pointer",
               }}
-              onClick={() => selected === undefined && setSelected(1)}
             >
               <ProjectActionButton
                 as={motion.div}
                 layout
                 selected={selected}
                 className={selected === 1 && "selected-project-action-button"}
-                onClick={() => selected === 1 && setSelected(undefined)}
+                onClick={() => {
+                  if (selected === 1) {
+                    setSelected(undefined);
+                    disableScroll.off();
+                  } else if (selected === undefined) {
+                    setSelected(1);
+                    disableScroll.on();
+                  }
+                }}
               >
                 <ProjectActionLineTop
                   className={
@@ -596,7 +690,16 @@ export default function Home() {
                   }
                 />
               </ProjectActionButton>
-              <ProjectImage as={motion.div} layout>
+              <ProjectImage
+                as={motion.div}
+                layout
+                onClick={() => {
+                  if (selected === undefined) {
+                    setSelected(1);
+                    disableScroll.on();
+                  }
+                }}
+              >
                 <Image
                   src="/Project2.png"
                   layout="fill"
@@ -615,6 +718,12 @@ export default function Home() {
               <ProjectInfo
                 selected={selected}
                 className={selected === 1 ? "selected-project-info" : ""}
+                onClick={() => {
+                  if (selected === undefined) {
+                    setSelected(1);
+                    disableScroll.on();
+                  }
+                }}
               >
                 <ProjectText as={motion.div} layout>
                   <ProjectTitle
@@ -655,24 +764,32 @@ export default function Home() {
             {selected === 1 && <ProjectPlaceholder />}
 
             <Project
-              className={selected === 2 && "selected-project"}
+              className={
+                selected === 2 && "selected-project selected-project-reverse"
+              }
               as={motion.div}
               layout
               selected={selected}
               style={{
                 originX: 0,
                 originY: 0,
-                marginTop: selected === 2 ? -189 : 0,
                 cursor: selected === 2 ? "default" : "pointer",
               }}
-              onClick={() => selected === undefined && setSelected(2)}
             >
               <ProjectActionButton
                 as={motion.div}
                 layout
                 selected={selected}
                 className={selected === 2 && "selected-project-action-button"}
-                onClick={() => selected === 2 && setSelected(undefined)}
+                onClick={() => {
+                  if (selected === 2) {
+                    setSelected(undefined);
+                    disableScroll.off();
+                  } else if (selected === undefined) {
+                    setSelected(2);
+                    disableScroll.on();
+                  }
+                }}
               >
                 <ProjectActionLineTop
                   className={
@@ -688,6 +805,12 @@ export default function Home() {
               <ProjectInfo
                 selected={selected}
                 className={selected === 2 ? "selected-project-info" : ""}
+                onClick={() => {
+                  if (selected === undefined) {
+                    setSelected(2);
+                    disableScroll.on();
+                  }
+                }}
               >
                 <ProjectText as={motion.div} layout>
                   <ProjectTitle
@@ -728,7 +851,16 @@ export default function Home() {
                   <GithubButton>Github Repo</GithubButton>
                 </ProjectButtons>
               </ProjectInfo>
-              <ProjectImage as={motion.div} layout>
+              <ProjectImage
+                as={motion.div}
+                layout
+                onClick={() => {
+                  if (selected === undefined) {
+                    setSelected(2);
+                    disableScroll.on();
+                  }
+                }}
+              >
                 <Image
                   src="/Project3.png"
                   layout="fill"
@@ -750,10 +882,10 @@ export default function Home() {
         </Portfolio>
 
         <Contact>
-          <Header>Contact</Header>
+          <Header>Contact.</Header>
           <ContactContainer>
             <ContactLabel>
-              If you have any inquiries, please send me an email.
+              If you have any inquiries, send me an email.
               <br />
               My inbox is always open.
             </ContactLabel>

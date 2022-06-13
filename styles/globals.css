@@ -20,6 +20,7 @@ a {
 
 button {
   border: none;
+  cursor: pointer;
 }
 
 main {
@@ -28,6 +29,13 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.image {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
 }
 
 .selected-project {
@@ -40,6 +48,12 @@ main {
   align-items: center !important;
   padding: 77px 16px 16px 16px !important;
   border-radius: 0 !important;
+  border: 1px solid #dddddd !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.selected-project:hover {
+  box-shadow: none !important;
 }
 
 .selected-project-reverse {
@@ -51,6 +65,7 @@ main {
   .selected-project {
     height: fit-content !important;
     width: 1007px !important;
+    flex-direction: row !important;
     justify-content: flex-start !important;
     align-items: center !important;
     position: fixed !important;
@@ -58,17 +73,24 @@ main {
     left: 50% !important;
     z-index: 2 !important;
     padding: 16px !important;
+    margin-top: -189px !important;
     margin-left: -503.5px !important;
+    border-radius: 25px !important;
   }
 
   .selected-project-reverse {
     flex-direction: row !important;
   }
+
+  .selected-project-action-button {
+    top: -22.5px !important;
+    right: -22.5px !important;
+  }
 }
 
 .selected-project-action-button {
+  top: 16px;
   bottom: 0 !important;
-  top: 16px !important;
   background-color: #000 !important;
 }
 
