@@ -179,6 +179,7 @@ const Portfolio = styled.div`
   padding: 0 16px;
   @media (min-width: 611px) {
     margin-top: 0;
+    padding: 0;
   }
 `;
 
@@ -446,7 +447,6 @@ const ContactButton = styled.button`
 export default function Home() {
   const [selected, setSelected] = React.useState();
   const theme = useTheme();
-  const projectRef = React.useRef(null);
 
   return (
     <Container>
@@ -606,7 +606,7 @@ export default function Home() {
                     <ProjectLabel>GraphQL</ProjectLabel>
                     <ProjectLabel>MySQL</ProjectLabel>
                     <ProjectLabel>Google Cloud API</ProjectLabel>
-                    <ProjectLabel>JWT Authentication</ProjectLabel>
+                    <ProjectLabel>JWT Auth</ProjectLabel>
                   </ProjectLabels>
                   <ProjectDescription
                     selected={selected}

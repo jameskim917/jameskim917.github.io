@@ -1,9 +1,8 @@
 import React from 'react'
-import { keyframes, useTheme } from '@emotion/react'
-import Image from 'next/image'
 import Link from 'next/link'
 import styled from "styled-components";
 import {motion} from 'framer-motion'
+import useOnClickOutside from '../utils/useOnClickOutside';
 
 const Container = styled.div`
     position: absolute;
@@ -188,6 +187,8 @@ const variantsBottom = {
 
 function Navbar() {
     const [open, setOpen] = React.useState()
+    const menuRef = React.useRef(null)
+    useOnClickOutside(menuRef, () => setOpen(false))
 
   return (
     <Container>
@@ -206,7 +207,7 @@ function Navbar() {
             </Button>
         </Links>
         {/* Mobile menu burger */}
-        <MobileBurger onClick={() => setOpen(!open)}>
+        <MobileBurger ref={menuRef} onClick={() => setOpen(!open)}>
             <SpanTop as={motion.div} open={open} key='spanTop'
                 animate={open ? 'openTop' : open === false ? 'closedTop' : undefined}
                 variants={variantsTop}
@@ -217,7 +218,7 @@ function Navbar() {
                 variants={variantsBottom}
             />
         </MobileBurger>
-        <MobileMenu open={open}>
+        <MobileMenu open={open} ref={menuRef}>
             <LinkContainer>
                 <Link href={'/'}>
                     <a>Portfolio</a>
@@ -232,7 +233,6 @@ function Navbar() {
                 Resume
             </ResumeContainer>
         </MobileMenu>
-        {open && <MobileMenuBackdrop onClick={() => open && setOpen(false)} />}
     </Container>
   )
 }
