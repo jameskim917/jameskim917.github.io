@@ -137,11 +137,12 @@ const MobileMenu = styled.div`
     opacity: ${props => props.open ? 1 : 0};
     position: absolute;
     top: 40px;
-    height: fit-content;
+    height: auto;
     width: calc(100% - 32px);
     flex-direction: column;
     gap: 16px;
     padding: 16px;
+    justify-content: center;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(5px);
