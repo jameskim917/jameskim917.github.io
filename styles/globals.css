@@ -55,9 +55,8 @@ main {
   box-shadow: none !important;
 }
 
-.selected-project-reverse {
-  flex-direction: column-reverse !important;
-  justify-content: flex-end !important;
+.selected-project-order {
+  order: 2 !important;
 }
 
 @media only screen and (min-width: 1004px) {

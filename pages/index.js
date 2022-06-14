@@ -537,9 +537,7 @@ export default function Home() {
           />
           <ProjectsContainer>
             <Project
-              className={
-                selected === 0 && "selected-project selected-project-reverse"
-              }
+              className={selected === 0 && "selected-project"}
               as={motion.div}
               layout
               selected={selected}
@@ -577,7 +575,11 @@ export default function Home() {
               </ProjectActionButton>
               <ProjectInfo
                 selected={selected}
-                className={selected === 0 ? "selected-project-info" : ""}
+                className={
+                  selected === 0
+                    ? "selected-project-info selected-project-order"
+                    : ""
+                }
                 onClick={() => {
                   if (selected === undefined) {
                     setSelected(0);
@@ -766,9 +768,7 @@ export default function Home() {
             {selected === 1 && <ProjectPlaceholder />}
 
             <Project
-              className={
-                selected === 2 && "selected-project selected-project-reverse"
-              }
+              className={selected === 2 && "selected-project"}
               as={motion.div}
               layout
               selected={selected}
@@ -806,7 +806,11 @@ export default function Home() {
               </ProjectActionButton>
               <ProjectInfo
                 selected={selected}
-                className={selected === 2 ? "selected-project-info" : ""}
+                className={
+                  selected === 2
+                    ? "selected-project-info selected-project-order"
+                    : ""
+                }
                 onClick={() => {
                   if (selected === undefined) {
                     setSelected(2);
