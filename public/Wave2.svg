@@ -1,4 +1,4 @@
-<svg width="1440" height="146" viewBox="0 0 1440 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1440" height="146" viewBox="0 0 1440 146" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
 <path d="M0 62.8L48 52.4C96 42 192 21.2 288 14.245C384 7.55 480 14.05 576 28.155C672 42 768 62.8 864 59.355C960 55.65 1056 28.35 1152 14.245C1248 0.400004 1344 0.400002 1392 0.400002H1440V146H1392C1344 146 1248 146 1152 146C1056 146 960 146 864 146C768 146 672 146 576 146C480 146 384 146 288 146C192 146 96 146 48 146H0V62.8Z" fill="url(#paint0_linear_83_298)"/>
 <defs>
 <linearGradient id="paint0_linear_83_298" x1="720" y1="0.400002" x2="720" y2="146" gradientUnits="userSpaceOnUse">
