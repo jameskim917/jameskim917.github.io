@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import disableScroll from "disable-scroll";
 
 const Container = styled.div`
+  height: 100%;
+  width: 100vw;
   padding: 0 0 32px 0;
   display: flex;
   flex-direction: column;
@@ -16,7 +18,7 @@ const Container = styled.div`
 const HeroContainer = styled.div`
   position: relative;
   height: fit-content;
-  width: 100vw;
+  width: 100%;
   background: linear-gradient(#7bc6cc, #be93c5);
   display: flex;
   flex-direction: column;
@@ -160,7 +162,7 @@ const Wave1 = styled.div`
 
 const Wave2 = styled.div`
   height: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 2;
   margin-top: 75px;
   padding-bottom: 10%;
