@@ -162,7 +162,7 @@ const Wave1 = styled.div`
 
 const Wave2 = styled.div`
   height: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 2;
   margin-top: 75px;
   padding-bottom: 10%;
