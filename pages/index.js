@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import disableScroll from "disable-scroll";
 
 const Container = styled.div`
-  padding: 0 16px 32px 0;
+  padding: 0 16px 32px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
