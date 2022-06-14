@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import disableScroll from "disable-scroll";
 
 const Container = styled.div`
-  padding: 0 16px 32px 16px;
+  padding: 0 0 32px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,6 +29,7 @@ const Hero = styled.div`
   display: flex;
   gap: 50px;
   margin-top: 125px;
+  padding: 0 16px;
   @media (max-width: 840px) {
     flex-direction: column;
     align-items: center;
@@ -173,6 +174,7 @@ const Portfolio = styled.div`
   flex-direction: column;
   gap: 24px;
   margin-top: 0;
+  padding: 0 16px;
   @media (min-width: 611px) {
     margin-top: 0;
   }
@@ -410,6 +412,7 @@ const Contact = styled.div`
   flex-direction: column;
   gap: 24px;
   margin-top: 75px;
+  padding: 0 16px;
 `;
 
 const ContactContainer = styled.div`
