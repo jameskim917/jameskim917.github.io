@@ -159,13 +159,12 @@ const Wave1 = styled.div`
 `;
 
 const Wave2 = styled.div`
-  height: auto;
+  height: 0;
   width: 100%;
-  aspect-ratio: 1440 / 147;
+  aspect-ratio: 1440 / 146;
   z-index: 2;
-  bottom: -2px;
   margin-top: 75px;
-  border-bottom: 2px solid #fff;
+  padding-bottom: 10%;
 `;
 
 const Portfolio = styled.div`
