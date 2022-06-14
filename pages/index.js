@@ -482,7 +482,7 @@ export default function Home() {
                     <Image src="/TSlogo.svg" height={45} width={45} />
                   </HeroIcon>
                   <HeroIcon>
-                    <Image src="/Reactlogo.svg" height={45} width={45} />
+                    <Image src="/ReactLogo.svg" height={45} width={45} />
                   </HeroIcon>
                 </HeroIconsLeft>
                 <HeroIconsRight>
