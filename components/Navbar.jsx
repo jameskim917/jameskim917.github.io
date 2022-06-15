@@ -45,18 +45,23 @@ const Links  = styled.div`
         display: none;
     }
     color: #fff;
-    font-size: 16px;
-    & a:hover {
-        color: #00366C;
-    }
     transition: all 0.3s;
 `
 
-const LinkContainer = styled.div`
-    font-size: 17px;
+const Navlink = styled.h6`
+    font-size: 16px;
     font-weight: 500;
     color: #00366C;
     padding: 8px 0;
+    @media (min-width: 480px) {
+        color: #fff;
+        padding: 0;
+        &:hover {
+            color: rgb(31, 102, 142);
+        }
+    }
+    transition: all 0.3s;
+    cursor: pointer;
 `
 
 const ResumeContainer = styled.div`
@@ -65,18 +70,17 @@ const ResumeContainer = styled.div`
     color: #fff;
     padding: 8px 16px;
     background-color: #00366C;
-    border-radius: 10px;
+    border-radius: 25px;
 `
 
 const Button = styled.button`
     height: fit-content;
     width: fit-content;
     color: #fff;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: 2px solid #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px 2px rgba(255, 255, 255, 0.2);
-    padding: 4px 8px;
+    background: linear-gradient(rgba(0, 54, 108, 1), rgba(0, 54, 108, 0.65));
+    box-shadow: 0 2px 15px 2px rgba(0, 54, 108, 0.2);
+    border-radius: 25px;
+    padding: 8px 16px;
     font-size: 16px;
     font-weight: 500;
     font-family: Manrope, sans-serif;
@@ -84,19 +88,25 @@ const Button = styled.button`
         font-size: 20px;
     }
     &:hover {
-        background-color: rgba(255, 255, 255, 1);
-        color: #00366C;
+        filter: brightness(1.5);
     }
     transition: all 0.3s;
     cursor: pointer;
     &:active {
-        background-color: #f0f0f0;
+        filter: brightness(0.9);
     }
 `
-const MobileBurger = styled.div`
+
+const MobileMenuContainer = styled.div`
+    height: fit-content;
+    width: fit-content;
+    position: relative;
     @media (min-width: 481px) {
         display: none; 
     }
+`
+
+const MobileBurger = styled.div`
     @media (max-width: 480px) {
         display: flex;
         flex-direction: column;
@@ -135,9 +145,10 @@ const MobileMenu = styled.div`
     visibility: ${props => props.open ? 'visible' : 'hidden'};
     opacity: ${props => props.open ? 1 : 0};
     position: absolute;
-    top: 40px;
+    top: 100%;
+    right: 0;
     height: auto;
-    width: calc(100% - 32px);
+    width: calc(100vw - 32px);
     flex-direction: column;
     gap: 16px;
     padding: 16px;
@@ -151,16 +162,6 @@ const MobileMenu = styled.div`
     font-size: 20px;
     transition: all 0.3s;
     z-index: 5;
-`
-
-const MobileMenuBackdrop = styled.div`
-    background: transparent;
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 4;
 `
 
 const variantsTop = {
@@ -185,7 +186,8 @@ const variantsBottom = {
     }
 }
 
-function Navbar() {
+function Navbar(props) {
+    const {portfolioRef, contactRef} = props
     const [open, setOpen] = React.useState()
     const menuRef = React.useRef(null)
     useOnClickOutside(menuRef, () => setOpen(false))
@@ -196,43 +198,33 @@ function Navbar() {
             <LogoJ>J.</LogoJ>
         </Logo>
         <Links>
-            <Link href={'/'}>
-                <a>Portfolio</a>
-            </Link>
-            <Link href={'/'}>
-                <a>Contact</a>
-            </Link >
+            <Navlink onClick={() => portfolioRef.current.scrollIntoView()}>Portfolio</Navlink>
+            <Navlink onClick={() => contactRef.current.scrollIntoView()}>Contact</Navlink>
             <Button>
                 Resume
             </Button>
         </Links>
         {/* Mobile menu burger */}
-        <MobileBurger ref={menuRef} onClick={() => setOpen(!open)}>
-            <SpanTop as={motion.div} open={open} key='spanTop'
-                animate={open ? 'openTop' : open === false ? 'closedTop' : undefined}
-                variants={variantsTop}
-            />
-            <SpanMiddle open={open}/>
-            <SpanBottom as={motion.div} open={open} key='spanBottom'
-                animate={open ? 'openBottom' : open === false ? 'closedBottom' : undefined}
-                variants={variantsBottom}
-            />
-        </MobileBurger>
-        <MobileMenu open={open} ref={menuRef}>
-            <LinkContainer>
-                <Link href={'/'}>
-                    <a>Portfolio</a>
-                </Link>
-            </LinkContainer>
-            <LinkContainer>
-                <Link href={'/'}>
-                    <a>Contact</a>
-                </Link >
-            </LinkContainer>
-            <ResumeContainer>
-                Resume
-            </ResumeContainer>
-        </MobileMenu>
+        <MobileMenuContainer ref={menuRef}>
+            <MobileBurger onClick={() => setOpen(!open)}>
+                <SpanTop as={motion.div} open={open} key='spanTop'
+                    animate={open ? 'openTop' : open === false ? 'closedTop' : undefined}
+                    variants={variantsTop}
+                />
+                <SpanMiddle open={open}/>
+                <SpanBottom as={motion.div} open={open} key='spanBottom'
+                    animate={open ? 'openBottom' : open === false ? 'closedBottom' : undefined}
+                    variants={variantsBottom}
+                />
+            </MobileBurger>
+            <MobileMenu open={open}>
+                <Navlink onClick={() => portfolioRef.current.scrollIntoView()}>Portfolio</Navlink>
+                <Navlink onClick={() => contactRef.current.scrollIntoView()}>Contact</Navlink>
+                <ResumeContainer>
+                    Resume
+                </ResumeContainer>
+            </MobileMenu>
+        </MobileMenuContainer>
     </Container>
   )
 }

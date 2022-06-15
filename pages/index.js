@@ -245,7 +245,11 @@ const ProjectActionButton = styled.div`
   height: 45px;
   width: 45px;
   border-radius: 50%;
-  background-color: #fff;
+  background: linear-gradient(
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.75)
+  );
+  box-shadow: 0 2px 15px 2px rgba(255, 255, 255, 0.25);
   position: absolute;
   bottom: 16px;
   right: 16px;
@@ -340,6 +344,8 @@ const ProjectTitle = styled.h3`
   font-family: Mulish, sans-serif;
   font-size: 28px;
   font-weight: 600;
+  color: ${(props) =>
+    props.selected === props.selectedKey ? "#00366c" : "#fff"};
 `;
 
 const ProjectLabels = styled.div`
@@ -352,12 +358,12 @@ const ProjectLabels = styled.div`
 
 const ProjectLabel = styled.h5`
   font-family: Mulish, sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 400;
 `;
 const ProjectDescription = styled.p`
   font-family: Mulish, sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 300;
   color: ${(props) => props.theme.secondary};
   visibility: hidden;
@@ -378,30 +384,37 @@ const ProjectButtons = styled.div`
 const DemoButton = styled.button`
   padding: 8px 16px;
   border-radius: 25px;
-  background-color: #0099ff;
+  background: linear-gradient(rgba(0, 133, 255, 1), rgba(0, 133, 255, 0.65));
+  box-shadow: 0 2px 15px 2px rgba(0, 133, 255, 0.25);
   color: #fff;
   font-size: 15px;
   font-weight: 500;
   &:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.2);
+    box-shadow: 0 4px 15px 4px rgba(0, 133, 255, 0.25);
   }
   transition: filter 0.1s;
   font-family: Mulish, sans-serif;
   font-size: 13px;
   font-weight: 700;
+  &:active {
+    filter: brightness(0.9);
+  }
 `;
 
 const GithubButton = styled.button`
   padding: 8px 16px;
   border-radius: 25px;
-  background-color: #000;
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.65));
+  box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.25);
   color: #fff;
   font-size: 15px;
   font-weight: 500;
   &:hover {
-    background-color: #6a6a6a;
+    filter: brightness(1.2);
+    box-shadow: 0 4px 15px 4px rgba(0, 0, 0, 0.25);
   }
-  transition: background-color 0.1s;
+  transition: all 0.1s;
   font-family: Mulish, sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -414,8 +427,11 @@ const Contact = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-top: 75px;
+  margin-top: 40px;
   padding: 0 16px;
+  @media (min-width: 480px) {
+    margin-top: 75px;
+  }
 `;
 
 const ContactContainer = styled.div`
@@ -434,19 +450,36 @@ const ContactLabel = styled.h5`
   color: ${(props) => props.theme.primary};
 `;
 
+const ContactEmail = styled.h5`
+  font-family: Mulish, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #00366c;
+`;
+
 const ContactButton = styled.button`
   padding: 8px 16px;
   border-radius: 25px;
-  background-color: ${(props) => props.theme.blue};
+  background: linear-gradient(rgba(0, 133, 255, 1), rgba(0, 133, 255, 0.65));
+  box-shadow: 0 2px 15px 2px rgba(0, 133, 255, 0.25);
   color: #fff;
   font-size: 15px;
   font-weight: 500;
   font-family: Manrope, sans-serif;
+  &:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 4px 15px 4px rgba(0, 133, 255, 0.25);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
 `;
 
 export default function Home() {
   const [selected, setSelected] = React.useState();
   const theme = useTheme();
+  const portfolioRef = React.useRef(null);
+  const contactRef = React.useRef(null);
 
   return (
     <Container>
@@ -456,7 +489,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
+      <Navbar portfolioRef={portfolioRef} contactRef={contactRef} />
 
       <main>
         <HeroContainer>
@@ -522,7 +555,7 @@ export default function Home() {
           </Wave2>
         </HeroContainer>
 
-        <Portfolio>
+        <Portfolio ref={portfolioRef}>
           <Header>Portfolio.</Header>
           <Overlay
             as={motion.div}
@@ -588,10 +621,7 @@ export default function Home() {
                 }}
               >
                 <ProjectText as={motion.div} layout>
-                  <ProjectTitle
-                    selected={selected}
-                    style={{ color: selected === 0 ? theme.primary : "#fff" }}
-                  >
+                  <ProjectTitle selected={selected} selectedKey={0}>
                     Real Estate Admin Panel
                   </ProjectTitle>
                   <ProjectLabels
@@ -730,10 +760,7 @@ export default function Home() {
                 }}
               >
                 <ProjectText as={motion.div} layout>
-                  <ProjectTitle
-                    selected={selected}
-                    style={{ color: selected === 1 ? theme.primary : "#fff" }}
-                  >
+                  <ProjectTitle selected={selected} selectedKey={1}>
                     Language Learning App
                   </ProjectTitle>
                   <ProjectLabels
@@ -819,10 +846,7 @@ export default function Home() {
                 }}
               >
                 <ProjectText as={motion.div} layout>
-                  <ProjectTitle
-                    selected={selected}
-                    style={{ color: selected === 2 ? theme.primary : "#fff" }}
-                  >
+                  <ProjectTitle selected={selected} selectedKey={2}>
                     Community Marketplace
                   </ProjectTitle>
                   <ProjectLabels
@@ -887,7 +911,7 @@ export default function Home() {
           </ProjectsContainer>
         </Portfolio>
 
-        <Contact>
+        <Contact ref={contactRef}>
           <Header>Contact.</Header>
           <ContactContainer>
             <ContactLabel>
@@ -895,6 +919,7 @@ export default function Home() {
               <br />
               My inbox is always open.
             </ContactLabel>
+            <ContactEmail>JAMESKIM917@GMAIL.COM</ContactEmail>
             <ContactButton>Get in Touch</ContactButton>
           </ContactContainer>
         </Contact>
