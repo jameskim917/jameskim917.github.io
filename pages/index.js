@@ -655,8 +655,12 @@ export default function Home() {
                   selected={selected}
                   className={selected === 0 && "selected-project-visible"}
                 >
-                  <DemoButton>Live Demo</DemoButton>
-                  <GithubButton>Github Repo</GithubButton>
+                  <a href="https://horizon-admin-panel.netlify.app/" target="_blank" rel="noreferrer">
+                    <DemoButton>Live Demo</DemoButton>
+                  </a>
+                  <a href="https://github.com/eskimojamz/real-estate-admin-panel" target="_blank" rel="noreferrer">
+                    <GithubButton>Github Repo</GithubButton>
+                  </a>
                 </ProjectButtons>
               </ProjectInfo>
               <ProjectImage
@@ -788,7 +792,9 @@ export default function Home() {
                   className={selected === 1 && "selected-project-visible"}
                 >
                   <DemoButton>Live Demo</DemoButton>
-                  <GithubButton>Github Repo</GithubButton>
+                  <a href="https://github.com/eskimojamz/daneo" target="_blank" rel="noreferrer">
+                    <GithubButton>Github Repo</GithubButton>
+                  </a>
                 </ProjectButtons>
               </ProjectInfo>
             </Project>
@@ -877,8 +883,12 @@ export default function Home() {
                   selected={selected}
                   className={selected === 2 && "selected-project-visible"}
                 >
-                  <DemoButton>Live Demo</DemoButton>
-                  <GithubButton>Github Repo</GithubButton>
+                  <a href="https://lime-market.web.app/" target="_blank" rel="noreferrer">
+                    <DemoButton>Live Demo</DemoButton>
+                  </a>
+                  <a href="https://github.com/eskimojamz/Lime-market" target="_blank" rel="noreferrer">
+                    <GithubButton>Github Repo</GithubButton>
+                  </a>
                 </ProjectButtons>
               </ProjectInfo>
               <ProjectImage
