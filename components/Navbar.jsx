@@ -222,9 +222,11 @@ function Navbar(props) {
             <MobileMenu open={open}>
                 <Navlink onClick={() => portfolioRef.current.scrollIntoView()}>Portfolio</Navlink>
                 <Navlink onClick={() => contactRef.current.scrollIntoView()}>Contact</Navlink>
-                <ResumeContainer>
-                    Resume
-                </ResumeContainer>
+                <a href="https://drive.google.com/drive/folders/1Wx-mVoF-IQgYoNRLU7P8K89meSM34P5d" target="_blank" rel="noreferrer">
+                    <ResumeContainer>
+                        Resume
+                    </ResumeContainer>
+                </a>
             </MobileMenu>
         </MobileMenuContainer>
     </Container>
