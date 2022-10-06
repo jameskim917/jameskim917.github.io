@@ -951,7 +951,9 @@ export default function Home() {
               My inbox is always open.
             </ContactLabel>
             <ContactEmail>JAMESKIM917@GMAIL.COM</ContactEmail>
-            <ContactButton>Get in Touch</ContactButton>
+            <a href="mailto:jameskim917@gmail.com">
+              <ContactButton>Get in Touch</ContactButton>
+            </a>
           </ContactContainer>
         </Contact>
       </main>
