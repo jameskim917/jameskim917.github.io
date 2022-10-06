@@ -200,9 +200,11 @@ function Navbar(props) {
         <Links>
             <Navlink onClick={() => portfolioRef.current.scrollIntoView()}>Portfolio</Navlink>
             <Navlink onClick={() => contactRef.current.scrollIntoView()}>Contact</Navlink>
-            <Button>
-                Resume
-            </Button>
+            <a href="https://drive.google.com/drive/folders/1Wx-mVoF-IQgYoNRLU7P8K89meSM34P5d" target="_blank" rel="noreferrer">
+                <Button>
+                    Resume
+                </Button>
+            </a>
         </Links>
         {/* Mobile menu burger */}
         <MobileMenuContainer ref={menuRef}>

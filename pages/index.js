@@ -9,7 +9,6 @@ import disableScroll from "disable-scroll";
 const Container = styled.div`
   height: 100%;
   width: 100vw;
-  padding: 0 0 32px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -276,7 +275,7 @@ const ProjectActionLineTop = styled.div`
 
 const ProjectActionLineBottom = styled.div`
   height: 2px;
-  width 10px;
+  width: 10px;
   background-color: #000;
   transform: rotate(-45deg);
   position: relative;
@@ -475,6 +474,28 @@ const ContactButton = styled.button`
   }
 `;
 
+const Footer = styled.footer`
+  padding: 10px;
+  margin-top: 100px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background-color: #00366c;
+`
+
+const FooterTextTop = styled.p`
+  color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+`
+
+const FooterTextBottom = styled.p`
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+`
+
 export default function Home() {
   const [selected, setSelected] = React.useState();
   const theme = useTheme();
@@ -658,7 +679,7 @@ export default function Home() {
                   <a href="https://horizon-admin-panel.netlify.app/" target="_blank" rel="noreferrer">
                     <DemoButton>Live Demo</DemoButton>
                   </a>
-                  <a href="https://github.com/eskimojamz/real-estate-admin-panel" target="_blank" rel="noreferrer">
+                  <a href="https://github.com/jameskim917/real-estate-admin-panel" target="_blank" rel="noreferrer">
                     <GithubButton>Github Repo</GithubButton>
                   </a>
                 </ProjectButtons>
@@ -792,7 +813,7 @@ export default function Home() {
                   className={selected === 1 && "selected-project-visible"}
                 >
                   <DemoButton>Live Demo</DemoButton>
-                  <a href="https://github.com/eskimojamz/daneo" target="_blank" rel="noreferrer">
+                  <a href="https://github.com/jameskim917/daneo-language-wordbook" target="_blank" rel="noreferrer">
                     <GithubButton>Github Repo</GithubButton>
                   </a>
                 </ProjectButtons>
@@ -886,7 +907,7 @@ export default function Home() {
                   <a href="https://lime-market.web.app/" target="_blank" rel="noreferrer">
                     <DemoButton>Live Demo</DemoButton>
                   </a>
-                  <a href="https://github.com/eskimojamz/Lime-market" target="_blank" rel="noreferrer">
+                  <a href="https://github.com/jameskim917/lime-community-market" target="_blank" rel="noreferrer">
                     <GithubButton>Github Repo</GithubButton>
                   </a>
                 </ProjectButtons>
@@ -935,7 +956,10 @@ export default function Home() {
         </Contact>
       </main>
 
-      {/* <footer className={styles.footer}></footer> */}
+      <Footer>
+        <FooterTextTop>Custom Made with React, Next.JS, Framer Motion & Styled Components</FooterTextTop>
+        <FooterTextBottom>© 2022 James Kim</FooterTextBottom>
+      </Footer>
     </Container>
   );
 }
