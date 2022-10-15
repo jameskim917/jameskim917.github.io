@@ -521,6 +521,7 @@ export default function Home() {
           <Hero>
             <HeroProfile>
               <Image
+                unoptimized
                 src={profilePic}
                 layout="fill"
                 style={{ borderRadius: 999 }}
@@ -699,6 +700,7 @@ export default function Home() {
                 }}
               >
                 <Image
+                  unoptimized
                   src={project1}
                   layout="fill"
                   style={{ borderRadius: 25 }}
@@ -764,6 +766,7 @@ export default function Home() {
                 }}
               >
                 <Image
+                  unoptimized
                   src={project2}
                   layout="fill"
                   style={{ borderRadius: 25 }}
@@ -929,6 +932,7 @@ export default function Home() {
                 }}
               >
                 <Image
+                  unoptimized
                   src={project3}
                   layout="fill"
                   style={{ borderRadius: 25 }}
