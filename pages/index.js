@@ -5,6 +5,10 @@ import Navbar from "../components/Navbar";
 import styled, { useTheme } from "styled-components";
 import { motion } from "framer-motion";
 import disableScroll from "disable-scroll";
+import profilePic from "../public/profile.png";
+import project1 from "../public/Project1.png";
+import project2 from "../public/Project2.png";
+import project3 from "../public/Project3.png";
 
 const Container = styled.div`
   height: 100%;
@@ -517,7 +521,7 @@ export default function Home() {
           <Hero>
             <HeroProfile>
               <Image
-                src="/profile.png"
+                src={profilePic}
                 layout="fill"
                 style={{ borderRadius: 999 }}
               />
@@ -695,7 +699,7 @@ export default function Home() {
                 }}
               >
                 <Image
-                  src="/Project1.png"
+                  src={project1}
                   layout="fill"
                   style={{ borderRadius: 25 }}
                 />
@@ -760,7 +764,7 @@ export default function Home() {
                 }}
               >
                 <Image
-                  src="/Project2.png"
+                  src={project2}
                   layout="fill"
                   style={{ borderRadius: 25 }}
                 />
@@ -925,7 +929,7 @@ export default function Home() {
                 }}
               >
                 <Image
-                  src="/Project3.png"
+                  src={project3}
                   layout="fill"
                   style={{ borderRadius: 25 }}
                 />
