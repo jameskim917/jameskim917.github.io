@@ -517,7 +517,7 @@ export default function Home() {
           <Hero>
             <HeroProfile>
               <Image
-                src="/profile.png"
+                src="../public/profile.png"
                 layout="fill"
                 style={{ borderRadius: 999 }}
               />
@@ -695,7 +695,7 @@ export default function Home() {
                 }}
               >
                 <Image
-                  src="/Project1.png"
+                  src="../public/Project1.png"
                   layout="fill"
                   style={{ borderRadius: 25 }}
                 />
@@ -760,7 +760,7 @@ export default function Home() {
                 }}
               >
                 <Image
-                  src="/Project2.png"
+                  src="../public/Project2.png"
                   layout="fill"
                   style={{ borderRadius: 25 }}
                 />
@@ -925,7 +925,7 @@ export default function Home() {
                 }}
               >
                 <Image
-                  src="/Project3.png"
+                  src="../public/Project3.png"
                   layout="fill"
                   style={{ borderRadius: 25 }}
                 />
