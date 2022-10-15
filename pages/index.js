@@ -812,7 +812,9 @@ export default function Home() {
                   selected={selected}
                   className={selected === 1 && "selected-project-visible"}
                 >
-                  <DemoButton>Live Demo</DemoButton>
+                  <a href="https://horizon-admin-panel.netlify.app/" target="_blank" rel="noreferrer">
+                    <DemoButton>Live Demo</DemoButton>
+                  </a>
                   <a href="https://github.com/jameskim917/daneo-language-wordbook" target="_blank" rel="noreferrer">
                     <GithubButton>Github Repo</GithubButton>
                   </a>
